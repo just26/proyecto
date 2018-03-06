@@ -16,7 +16,7 @@ class CreateNursesTable extends Migration
         Schema::create('nurses', function (Blueprint $table) {
             $table->increments('id');
             $table->unsignedInteger('user_id');
-            $table->string('despacho');
+            $table->string('office');
             $table->timestamps();
         });
     }
