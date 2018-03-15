@@ -15,12 +15,15 @@ class CreateSurgeriesTable extends Migration
     {
         Schema::create('surgeries', function (Blueprint $table) {
             $table->increments('id');
-            $table->unsignedInteger('id_doctor');
-            $table->unsignedInteger('id_patient');
-            $table->string('hour');
+            $table->unsignedInteger('doctor_id');
+            $table->unsignedInteger('patient_id');
+            $table->date('date');
+            $table->integer('hour');
             $table->string('operatingroom');
-            $table->string('date');
             $table->timestamps();
+
+            $table->foreign('doctor_id')->references('id')->on('doctors')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

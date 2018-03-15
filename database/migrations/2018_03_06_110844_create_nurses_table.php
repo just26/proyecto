@@ -14,10 +14,14 @@ class CreateNursesTable extends Migration
     public function up()
     {
         Schema::create('nurses', function (Blueprint $table) {
-            $table->increments('id');
+            $table->increments('id')->unique();
             $table->unsignedInteger('user_id');
+            $table->unsignedInteger('patient_id');
             $table->string('office');
             $table->timestamps();
+
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
+            $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
