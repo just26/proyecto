@@ -14,11 +14,11 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    /*public function patient_de user_1()
+    public function hola()
     {
         $patient = User::find(1)->patient;
         $DNI_patient = $patient->DNI/NIF;
-    }*/
+    }
 
     public function index()
     {

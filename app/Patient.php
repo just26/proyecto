@@ -14,7 +14,7 @@ class Patient extends Model
         return $this->hasMany('App\Surgery');
     }
 
-    public function nurses()
+    public function nurse()
     {
         return $this->belongsTo('App\Nurse');
     }
