@@ -41,8 +41,8 @@ class PatientController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required|255',
-            'surname' => 'required|max255',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'email' => 'required|255',
             'password' => 'required|255',
             'tlp' => 'required|255',
@@ -55,7 +55,7 @@ class PatientController extends Controller
 
         flash('Paciente creado correctamente');
 
-        return redirect()-> route('patient.index');
+        return redirect()-> route('patients.index');
     }
 
     /**
@@ -66,7 +66,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        //
+        return view('patients/show', ['patient'=>$patient]);
     }
 
     /**
@@ -80,7 +80,7 @@ class PatientController extends Controller
         //
         $patient = Patient::find($id);
 
-        return view('patient/edit',['patient'=> $patient]);
+        return view('patients/edit',['patient'=> $patient]);
     }
 
     /**
@@ -94,8 +94,8 @@ class PatientController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required|255',
-            'surname' => 'required|max255',
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
             'email' => 'required|255',
             'password' => 'required|255',
             'tlp' => 'required|255',
@@ -127,6 +127,14 @@ class PatientController extends Controller
         $patient->delete();
         flash('Paciente borrado correctamente');
 
-        return redirect()->route('patient.index');
+        return redirect()->route('patients.index');
+    }
+
+    public function destroyAll()
+    {
+        Patient::truncate();
+        flash('Todas las especialidades han sido borradas');
+
+        return redirect()->route('patients.index');
     }
 }
