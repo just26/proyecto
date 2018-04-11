@@ -14,7 +14,8 @@ class SurgeryController extends Controller
      */
     public function index()
     {
-        //
+        $surgeries = Nurse::all();
+        return view('surgeries/index', ['surgeries'=>$surgeries]);
     }
 
     /**
@@ -24,7 +25,7 @@ class SurgeryController extends Controller
      */
     public function create()
     {
-        //
+        return view('surgeries/create');
     }
 
     /**
@@ -35,7 +36,17 @@ class SurgeryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'date' => 'required|255',
+            'hour' => 'required|255',
+            'operatingroom' => 'required|255',
+        ]);
+        $surgery = new Surgery($request->all());
+        $surgery->save();
+
+        flash('Operacion creado correctamente');
+
+        return redirect()-> route('surgeries.index');
     }
 
     /**
@@ -46,7 +57,7 @@ class SurgeryController extends Controller
      */
     public function show(Surgery $surgery)
     {
-        //
+        return view('surgeries/show', ['surgery'=>$surgery]);
     }
 
     /**
@@ -55,9 +66,11 @@ class SurgeryController extends Controller
      * @param  \App\Surgery  $surgery
      * @return \Illuminate\Http\Response
      */
-    public function edit(Surgery $surgery)
+    public function edit($id)
     {
-        //
+        $surgery = Nurse::find($id);
+
+        return view('surgeries/edit',['surgery'=> $surgery]);
     }
 
     /**
@@ -67,9 +80,21 @@ class SurgeryController extends Controller
      * @param  \App\Surgery  $surgery
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Surgery $surgery)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'date' => 'required|255',
+            'hour' => 'required|255',
+            'operatingroom' => 'required|255',
+        ]);
+        $surgery = Surgery::find($id);
+        $surgery->fill($request->all());
+
+        $surgery->save();
+
+        flash('Operacion modificada correctamente');
+
+        return redirect()-> route('surgeries.index');
     }
 
     /**
@@ -78,8 +103,20 @@ class SurgeryController extends Controller
      * @param  \App\Surgery  $surgery
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Surgery $surgery)
+    public function destroy($id)
     {
-        //
+        $surgery = Surgery::find($id);
+        $surgery->delete();
+        flash('Operacion borrada correctamente');
+
+        return redirect()->route('surgeries.index');
+    }
+
+    public function destroyAll()
+    {
+        Surgery::truncate();
+        flash('Todos las operaciones han sido borradas');
+
+        return redirect()->route('surgeries.index');
     }
 }

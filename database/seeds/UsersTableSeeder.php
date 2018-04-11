@@ -13,6 +13,8 @@ class UsersTableSeeder extends Seeder
     {
         //
         factory(App\User::class,20)->create();
+        //factory(App\Patient::class,20)->create();
+
         /*DB::table('users')->insert([
             'name' => str_random(10),
             'surname' => str_random(10),

@@ -15,6 +15,7 @@ class CreateUsersTable extends Migration
     {
         Schema::create('users', function (Blueprint $table) {
             $table->increments('id')->unique();
+            //$table->unsignedInteger('patient_id');
             $table->string('name');
             $table->string('surname')->nullable();
             $table->string('email')->unique();
@@ -25,6 +26,8 @@ class CreateUsersTable extends Migration
             $table->integer('age')->default(18);
             $table->rememberToken();
             $table->timestamps();
+
+            //$table->foreign('patient_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 

@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Patient;
+use App\Doctor;
 use Illuminate\Http\Request;
 
-class PatientController extends Controller
+class DoctorController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,10 +14,8 @@ class PatientController extends Controller
      */
     public function index()
     {
-        //
-        $patients = Patient::all();
-
-        return view('patients/index', ['patients'=>$patients]);
+        $doctors = Doctor::all();
+        return view('doctors/index', ['doctors'=>$doctors]);
     }
 
     /**
@@ -27,8 +25,7 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
-        return view('patients/create');
+        return view('doctors/create');
     }
 
     /**
@@ -39,7 +36,6 @@ class PatientController extends Controller
      */
     public function store(Request $request)
     {
-        //
         $this->validate($request, [
             'name' => 'required|max:255',
             'surname' => 'required|max:255',
@@ -48,46 +44,48 @@ class PatientController extends Controller
             'tlp' => 'required|255',
             'address' => 'required|255',
             'DNI/NIF' => 'required|255',
-            'age' => 'required|255'
+            'age' => 'required|255',
+            'office' => 'required|255',
         ]);
-        $patient = new Patient($request->all());
-        $patient->save();
+        $doctor = new Doctor($request->all());
+        $doctor->save();
 
-        flash('Paciente creado correctamente');
+        flash('Doctor creado correctamente');
 
-        return redirect()-> route('patients.index');
+        return redirect()-> route('doctors.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Patient  $patient
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
-    public function show(Patient $patient)
+    public function show(Doctor $doctor)
     {
-        return view('patients/show', ['patient'=>$patient]);
+        //
+        return view('doctors/show', ['doctor'=>$doctor]);
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Patient  $patient
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
     {
         //
-        $patient = Patient::find($id);
+        $doctor = Doctor::find($id);
 
-        return view('patients/edit',['patient'=> $patient]);
+        return view('doctors/edit',['doctor'=> $doctor]);
     }
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Patient  $patient
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
@@ -101,40 +99,41 @@ class PatientController extends Controller
             'tlp' => 'required|255',
             'address' => 'required|255',
             'DNI/NIF' => 'required|255',
-            'age' => 'required|255'
+            'age' => 'required|255',
+            'office' => 'required|255',
         ]);
-        $patient = Patient::find($id);
-        $patient->fill($request->all());
+        $doctor = Doctor::find($id);
+        $doctor->fill($request->all());
 
-        $patient->save();
+        $doctor->save();
 
-        flash('Paciente modificado correctamente');
+        flash('Doctor modificado correctamente');
 
-        return redirect()-> route('patients.index');
-
+        return redirect()-> route('doctors.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Patient  $patient
+     * @param  \App\Doctor  $doctor
      * @return \Illuminate\Http\Response
      */
     public function destroy($id)
     {
         //
-        $patient = Patient::find($id);
-        $patient->delete();
-        flash('Paciente borrado correctamente');
+        $doctor = Doctor::find($id);
+        $doctor->delete();
+        flash('Doctor borrado correctamente');
 
-        return redirect()->route('patients.index');
+        return redirect()->route('doctors.index');
     }
 
     public function destroyAll()
     {
-        Patient::truncate();
-        flash('Todos los pacientes han sido borrados');
+        Doctor::truncate();
+        flash('Todos los doctores han sido borrados');
 
-        return redirect()->route('patients.index');
+        return redirect()->route('doctors.index');
     }
+
 }

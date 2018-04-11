@@ -12,7 +12,8 @@ class PatientsTableSeeder extends Seeder
     public function run()
     {
         //
-        DB::table('patients')->insert([
+        factory(App\Patient::class,20)->create();
+        /*DB::table('patients')->insert([
             'name' => str_random(10),
             'surname' => str_random(10),
             'email' => str_random(10).'@gmail.com',
@@ -21,6 +22,6 @@ class PatientsTableSeeder extends Seeder
             'address' => str_random(10),
             'DNI/NIF' => str_random(10),
             'age' => str_random(10),
-        ]);
+        ]);*/
     }
 }
