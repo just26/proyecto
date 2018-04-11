@@ -29,7 +29,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function patients()
+    public function patient()
     {
     return $this->hasOne('App\Patient');
     }
