@@ -17,8 +17,7 @@ class CreateSurgeriesTable extends Migration
             $table->increments('id');
             $table->unsignedInteger('doctor_id');
             $table->unsignedInteger('patient_id');
-            $table->date('date');
-            $table->integer('hour');
+            $table->dateTime('date');
             $table->string('operatingroom');
             $table->timestamps();
 

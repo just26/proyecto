@@ -9,7 +9,7 @@ class Patient extends Model
     //
     protected $fillable = [];//'name', 'surname', 'email', 'password', 'tlp', 'address', 'DNI,NIF', 'age'];
 
-    public function user()
+    public function users()
     {
         return $this->belongsTo('App\User');
     }
@@ -18,7 +18,7 @@ class Patient extends Model
         return $this->hasMany('App\Surgery');
     }
 
-    public function nurse()
+    public function nurses()
     {
         return $this->belongsTo('App\Nurse');
     }

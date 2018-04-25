@@ -14,15 +14,17 @@ class UserController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function hola()
+    /*public function hola()
     {
         $patient = User::find(1)->patient;
         $DNI_patient = $patient->DNI/NIF;
-    }
+    }*/
 
     public function index()
     {
-        //
+        $users = User::all();
+
+        return view('users/index', ['users'=>$users]);
     }
 
     /**
@@ -32,7 +34,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        return view('users/create');
     }
 
     /**
@@ -43,7 +45,22 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'email' => 'required|255',
+            'password' => 'required|255',
+            'tlp' => 'required|255',
+            'address' => 'required|255',
+            'DNI/NIF' => 'required|255',
+            'age' => 'required|255'
+        ]);
+        $user = new User($request->all());
+        $user->save();
+
+        flash('Usuario creado correctamente');
+
+        return redirect()-> route('users.index');
     }
 
     /**
@@ -54,7 +71,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        return view('users/show', ['user'=>$user]);
     }
 
     /**
@@ -63,9 +80,11 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit($id)
     {
-        //
+        $user = User::find($id);
+
+        return view('users/edit',['user'=> $user]);
     }
 
     /**
@@ -75,9 +94,26 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required|max:255',
+            'surname' => 'required|max:255',
+            'email' => 'required|255',
+            'password' => 'required|255',
+            'tlp' => 'required|255',
+            'address' => 'required|255',
+            'DNI/NIF' => 'required|255',
+            'age' => 'required|255'
+        ]);
+        $user = User::find($id);
+        $user->fill($request->all());
+
+        $user->save();
+
+        flash('Usuario modificado correctamente');
+
+        return redirect()-> route('users.index');
     }
 
     /**
@@ -86,8 +122,12 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($id)
     {
-        //
+        $user = User::find($id);
+        $user->delete();
+        flash('Usuario borrado correctamente');
+
+        return redirect()->route('users.index');
     }
 }

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Surgery extends Model
 {
     //
-    protected $fillable = ['date', 'hour', 'operatingroom'];
+    protected $fillable = ['date', 'operatingroom'];
 
     public function doctors()
     {

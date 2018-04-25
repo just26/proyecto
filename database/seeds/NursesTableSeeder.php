@@ -11,6 +11,6 @@ class NursesTableSeeder extends Seeder
      */
     public function run()
     {
-        //
+        factory(App\Nurse::class,20)->create();
     }
 }
