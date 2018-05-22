@@ -37,15 +37,7 @@ class NurseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255',
-            'office' => 'required|255',
+            'office' => 'required|max:255',
         ]);
         $nurse = new Nurse($request->all());
         $nurse->save();
@@ -89,15 +81,7 @@ class NurseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255',
-            'office' => 'required|255',
+            'office' => 'required|max:255',
         ]);
         $nurse = Nurse::find($id);
         $nurse->fill($request->all());

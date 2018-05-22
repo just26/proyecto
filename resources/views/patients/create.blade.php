@@ -16,29 +16,39 @@
                             {!! Form::text('name',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('email', 'E-mail del paciente') !!}
-                            {!! Form::text('email',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('surname', 'Apellido del Paciente') !!}
+                            {!! Form::text('surname',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('password', 'Password del paciente') !!}
-                            {!! Form::text('password',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('email', 'Email del Paciente') !!}
+                            {!! Form::text('email',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('tlp', 'Telefono del paciente') !!}
-                            {!! Form::text('tlp',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('password', 'Contraseña del Paciente') !!}
+                            {!! Form::text('password',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('address', 'Direccion del paciente') !!}
-                            {!! Form::text('address',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('tlp', 'Telefono del Paciente') !!}
+                            {!! Form::text('tlp',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('DNI/NIF', 'DNI/NIF del paciente') !!}
-                            {!! Form::text('DNI/NIF',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('adrress', 'Direccion del Paciente') !!}
+                            {!! Form::text('adrress',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('age', 'Edad del paciente') !!}
-                            {!! Form::text('age',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('DNI', 'DNI del Paciente') !!}
+                            {!! Form::text('DNI',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
+                        <div class="form-group">
+                            {!! Form::label('age', 'Edad del Paciente') !!}
+                            {!! Form::text('age',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+                        <div class="form-group">
+                            {!! Form::label('nuhsa', 'Nuhsa del Paciente') !!}
+                            {!! Form::text('nuhsa',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                        </div>
+
+
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
                         {!! Form::close() !!}

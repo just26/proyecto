@@ -7,7 +7,8 @@ $factory->define(App\Patient::class, function (Faker $faker) {
     return [
         'user_id' => function () {
             return factory(App\User::class)->create()->id;
-        }
+        },
+        'nuhsa' => str_random(10),
 
         /*'name' => $faker->name,
         'email' => $faker->unique()->safeEmail,

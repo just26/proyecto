@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Doctor;
+use App\User;
 use Illuminate\Http\Request;
 
 class DoctorController extends Controller
@@ -25,6 +26,8 @@ class DoctorController extends Controller
      */
     public function create()
     {
+        $users = User(users.$this->create());
+
         return view('doctors/create');
     }
 
@@ -37,15 +40,7 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255',
-            'office' => 'required|255',
+            'office' => 'required|max:255',
         ]);
         $doctor = new Doctor($request->all());
         $doctor->save();
@@ -92,15 +87,7 @@ class DoctorController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255',
-            'office' => 'required|255',
+            'office' => 'required',
         ]);
         $doctor = Doctor::find($id);
         $doctor->fill($request->all());

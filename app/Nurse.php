@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Nurse extends Model
 {
     //
-    protected $fillable = ['name', 'surname', 'email', 'password', 'tlp', 'address', 'DNI,NIF', 'age', 'office'];
+    protected $fillable = ['office', 'user_id', 'patient_id'];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }

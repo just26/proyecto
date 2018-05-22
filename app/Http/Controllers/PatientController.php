@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Patient;
+use App\User;
 use Illuminate\Http\Request;
 
 class PatientController extends Controller
@@ -16,8 +17,23 @@ class PatientController extends Controller
     {
         //
         $patients = Patient::all();
+        //$patients = App\Patient::with('users')->get();
+        //$patients = Patient::with('users:id,name')->get();
+        //$users = User::all();
 
-        return view('patients/index', ['patients'=>$patients]);
+        //foreach ($users as $user){
+          //  echo $user->patients->nuhsa;   //= (string)$users;
+        //}
+        //return view('patients/index', ['patients'=>$patients], 'users/index', ['users'=>users]);
+        //foreach ($patients as $patient){
+          //  echo $patient->users;
+        //}
+        return view( 'patients/index', ['patients'=>$patients]);
+
+        /*foreach ($patients as $patient => $users){
+            return view( 'users/index', ['users'=>$users]);
+        view( 'users/index', ['users'=>$users]);
+        }*/
     }
 
     /**
@@ -27,7 +43,9 @@ class PatientController extends Controller
      */
     public function create()
     {
-        //
+
+        //$user= new User(users.$this->create());
+
         return view('patients/create');
     }
 
@@ -41,17 +59,44 @@ class PatientController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255'
+
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'tlp' => 'required',
+            'adrress' => 'required',
+            'DNI' => 'required',
+            'age' => 'required',
+            'nuhsa' => 'required|max:255',
+            //agregar las validaciones propias de los campos propios de usuario
         ]);
-        $patient = new Patient($request->all());
-        $patient->save();
+
+        // 1: Crear un user, con los campos del formulario propios del user
+        $user = new User();
+            $user->name = $request->name;
+            $user->surname = $request->surname;
+            $user->email = $request->email;
+            $user->tlp = $request->tlp;
+            $user->adrress = $request->adrress;
+            $user->DNI = $request->DNI;
+            $user->password = Hash::make($request->DNI);
+            $user->age = $request->age;
+            // new User. $user->name = $request->name... etc etc para todos los campos
+            $user->save();
+            // $user->save()
+
+            // una vez ejecutado el save, puedes acceder al user_id asi: $user->id o $user->user_id
+
+        // 2: Recuperar el user_id que se acaba de crear
+            $user->id;
+        // 3: Crear el patient, con los datos propios de paciente, más el user_id recuperado
+        $patient = new Patient();
+            $patient->nuhsa = $request->nuhsa;
+            $patient->user_id = $user->id;
+            $patient->save();
+        //
+
 
         flash('Paciente creado correctamente');
 
@@ -66,6 +111,7 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
+        $patient = User::find($patient->users());
 
         return view('patients/show', ['patient'=>$patient]);
     }
@@ -95,14 +141,8 @@ class PatientController extends Controller
     {
         //
         $this->validate($request, [
-            'name' => 'required|max:255',
-            'surname' => 'required|max:255',
-            'email' => 'required|255',
-            'password' => 'required|255',
-            'tlp' => 'required|255',
-            'address' => 'required|255',
-            'DNI/NIF' => 'required|255',
-            'age' => 'required|255'
+            'nuhsa' => 'required|max:255',
+
         ]);
         $patient = Patient::find($id);
         $patient->fill($request->all());

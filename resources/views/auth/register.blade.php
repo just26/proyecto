@@ -5,14 +5,14 @@
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card card-default">
-                <div class="card-header">Register</div>
+                <div class="card-header">Registro</div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="form-group row">
-                            <label for="name" class="col-md-4 col-form-label text-md-right">Name</label>
+                            <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control{{ $errors->has('name') ? ' is-invalid' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
@@ -20,6 +20,20 @@
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('name') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="surname" class="col-md-4 col-form-label text-md-right">Apellidos</label>
+
+                            <div class="col-md-6">
+                                <input id="surname" type="text" class="form-control{{ $errors->has('surname') ? ' is-invalid' : '' }}" name="surname" value="{{ old('surname') }}" required autofocus>
+
+                                @if ($errors->has('surname'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('surname') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -61,13 +75,93 @@
                             </div>
                         </div>
 
-                        <div class="form-group row mb-0">
-                            <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
-                                    Register
-                                </button>
+                        <div class="form-group row">
+                            <label for="tlp" class="col-md-4 col-form-label text-md-right">Telefono</label>
+
+                            <div class="col-md-6">
+                                <input id="tlp" type="text" class="form-control{{ $errors->has('tlp') ? ' is-invalid' : '' }}" name="tlp" value="{{ old('tlp') }}" required autofocus>
+
+                                @if ($errors->has('tlp'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('tlp') }}</strong>
+                                    </span>
+                                @endif
                             </div>
                         </div>
+
+                        <div class="form-group row">
+                            <label for="adrress" class="col-md-4 col-form-label text-md-right">Direccion</label>
+
+                            <div class="col-md-6">
+                                <input id="adrress" type="text" class="form-control{{ $errors->has('adrress') ? ' is-invalid' : '' }}" name="adrress" value="{{ old('adrress') }}" required autofocus>
+
+                                @if ($errors->has('adrress'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('adrress') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="DNI" class="col-md-4 col-form-label text-md-right">DNI</label>
+
+                            <div class="col-md-6">
+                                <input id="DNI" type="text" class="form-control{{ $errors->has('DNI') ? ' is-invalid' : '' }}" name="DNI" value="{{ old('DNI') }}" required autofocus>
+
+                                @if ($errors->has('DNI'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('DNI') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="age" class="col-md-4 col-form-label text-md-right">Edad</label>
+
+                            <div class="col-md-6">
+                                <input id="age" type="text" class="form-control{{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ old('age') }}" required autofocus>
+
+                                @if ($errors->has('age'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('age') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="office" class="col-md-4 col-form-label text-md-right">Despacho</label>
+
+                            <div class="col-md-6">
+                                <input id="office" type="text" class="form-control{{ $errors->has('office') ? ' is-invalid' : '' }}" name="office" value="{{ old('office') }}" required autofocus>
+
+                                @if ($errors->has('office'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('office') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="radio">
+
+                                <label class="col-md-4 col-form-label text-md-right">Tipo de profesional</label>
+
+                                    <input type="radio" name="Tipo" id="Enfermero">
+                                    <label for="Enfermero">Enfermero</label>
+                                    <input type="radio" name="Tipo" id="Doctor">
+                                    <label for="Doctor">Doctor</label>
+
+
+                            </div>
+
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Registrar
+                        </button>
                     </form>
                 </div>
             </div>

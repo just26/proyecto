@@ -7,9 +7,9 @@ use Illuminate\Database\Eloquent\Model;
 class Patient extends Model
 {
     //
-    protected $fillable = [];//'name', 'surname', 'email', 'password', 'tlp', 'address', 'DNI,NIF', 'age'];
+    protected $fillable = ['nuhsa'];//'name', 'surname', 'email', 'password', 'tlp', 'address', 'DNI,NIF', 'age'];
 
-    public function users()
+    public function user()
     {
         return $this->belongsTo('App\User');
     }
@@ -18,7 +18,7 @@ class Patient extends Model
         return $this->hasMany('App\Surgery');
     }
 
-    public function nurses()
+    public function nurse()
     {
         return $this->belongsTo('App\Nurse');
     }
