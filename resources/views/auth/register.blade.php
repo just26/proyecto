@@ -10,6 +10,20 @@
                 <div class="card-body">
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        <div class="form-group row">
+                            <div class="radio">
+
+                                <label class="col-md-4 col-form-label text-md-right">Tipo de profesional</label>
+
+                                <input type="radio" name="Tipo" id="Tipo" value="Doctor">
+                                <label for="Doctor">Doctor</label>
+                                <input type="radio" name="Tipo" id="Tipo" value="Enfermero">
+                                <label for="Enfermero">Enfermero</label>
+                                <input type="radio" name="Tipo" id="Tipo" value="Paciente">
+                                <label for="Paciente">Paciente</label>
+
+                            </div>
+                        </div>
 
                         <div class="form-group row">
                             <label for="name" class="col-md-4 col-form-label text-md-right">Nombre</label>
@@ -146,19 +160,19 @@
                         </div>
 
                         <div class="form-group row">
-                            <div class="radio">
+                            <label for="nuhsa" class="col-md-4 col-form-label text-md-right">Nuhsa</label>
 
-                                <label class="col-md-4 col-form-label text-md-right">Tipo de profesional</label>
+                            <div class="col-md-6">
+                                <input id="nuhsa" type="text" class="form-control{{ $errors->has('nuhsa') ? ' is-invalid' : '' }}" name="nuhsa" value="{{ old('nuhsa') }}" required autofocus>
 
-                                    <input type="radio" name="Tipo" id="Enfermero">
-                                    <label for="Enfermero">Enfermero</label>
-                                    <input type="radio" name="Tipo" id="Doctor">
-                                    <label for="Doctor">Doctor</label>
-
-
+                                @if ($errors->has('nuhsa'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('nuhsa') }}</strong>
+                                    </span>
+                                @endif
                             </div>
-
                         </div>
+
                         <button type="submit" class="btn btn-primary">
                             Registrar
                         </button>

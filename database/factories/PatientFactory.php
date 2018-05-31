@@ -8,6 +8,9 @@ $factory->define(App\Patient::class, function (Faker $faker) {
         'user_id' => function () {
             return factory(App\User::class)->create()->id;
         },
+        'nurse_id' => function () {
+            return factory(App\Nurse::class)->create()->id;
+        },
         'nuhsa' => str_random(10),
 
         /*'name' => $faker->name,

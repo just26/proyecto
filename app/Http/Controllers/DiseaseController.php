@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Disease;
+use App\Patient;
 use Illuminate\Http\Request;
 
 class DiseaseController extends Controller
@@ -15,7 +16,12 @@ class DiseaseController extends Controller
     public function index()
     {
         $diseases = Disease::all();
+        //return view('diseases/index', ['diseases'=>$diseases]);
+        //foreach ($patient->diseases as $disease){
+          //  $disease->pivot->date;
+        //}
         return view('diseases/index', ['diseases'=>$diseases]);
+
     }
 
     /**
@@ -55,7 +61,7 @@ class DiseaseController extends Controller
      */
     public function show(Disease $disease)
     {
-        return view('diseases/show', ['disease'=>$disease]);
+        return view('diseases/show', ['diseases'=>$disease]);
     }
 
     /**
@@ -68,7 +74,7 @@ class DiseaseController extends Controller
     {
         $disease = Disease::find($id);
 
-        return view('diseases/edit',['disease'=> $disease]);
+        return view('diseases/edit',['diseases'=> $disease]);
     }
 
     /**

@@ -25,6 +25,6 @@ class Patient extends Model
 
     public function diseases()
     {
-        return $this->belongsToMany('App\Disease');
+        return $this->belongsToMany('App\Disease','diseases_patients','patient_id','disease_id')->withPivot('date','symptom');
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Patient;
 use App\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 
 class PatientController extends Controller
 {
@@ -17,6 +18,7 @@ class PatientController extends Controller
     {
         //
         $patients = Patient::all();
+        //$patient = User::find($patient->user());
         //$patients = App\Patient::with('users')->get();
         //$patients = Patient::with('users:id,name')->get();
         //$users = User::all();
@@ -111,9 +113,24 @@ class PatientController extends Controller
      */
     public function show(Patient $patient)
     {
-        $patient = User::find($patient->users());
+        $patient = User::find($patient->user());
 
         return view('patients/show', ['patient'=>$patient]);
+    }
+
+    public function showdetails($id){
+        $patient = Patient::find($id);
+        //foreach ($patient->diseases as $disease){
+          //  echo $disease->pivot->date;
+        //}
+        //$patient = User::find($patient->user());
+        //foreach ($patient->diseases as $disease){
+          //  echo $disease->pivot->date;
+        //}
+        //$diseases = Patient::find(22)->diseases;
+        //return view('patients/patientdetails')->with('diseases',$diseases);
+
+        return view('patients/showdetails', ['patient'=>$patient]);
     }
 
     /**

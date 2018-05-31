@@ -64,6 +64,13 @@ class RegisterController extends Controller
         return view('auth.register', ['nurses'=>$nurses]);
     }
 
+    public function showRegistrationForm2()
+    {
+        $patients = Patient::all()->pluck('name', 'id');
+
+        return view('auth.register', ['patients'=>$patients]);
+    }
+
     protected function validator(array $data)
     {
         return Validator::make($data, [
@@ -76,7 +83,7 @@ class RegisterController extends Controller
             'DNI' => 'required|string|max:255',
             'age' => 'required|integer|max:255',
             'office' => 'required|string|max:255',
-
+            'nuhsa' => 'required|string|max:255',
         ]);
     }
 
@@ -108,18 +115,20 @@ class RegisterController extends Controller
             $doctor->save();
 
             return $user;
-        }else{
-
+        }elseif ($valor=="Enfermero"){
             $nurse = new Nurse($data);
             $nurse->office = $data['office'];
-            //$patient = new Patient();
-            //$patient->nuhsa = $data['nuhsa'];
 
             $nurse->user()->associate($user);
             $nurse->save();
 
-            //$patient->nurse()->associate($nurse);
-            //$patient->save();
+            return $user;
+        }else{
+            $patient = new Patient($data);
+            $patient->nuhsa = $data['nuhsa'];
+
+            $patient->user()->associate($user);
+            $patient->save();
 
             return $user;
         }

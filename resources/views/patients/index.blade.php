@@ -19,7 +19,7 @@
                                 <th>Nuhsa</th>
                                 <th>Nombre</th>
 
-                                <th colspan="2">Actions</th>
+                                <th colspan="4">Acciones</th>
                             </tr>
 
                             @foreach ($patients as $patient)
@@ -38,8 +38,18 @@
                                         {!! Form::open(['route' => ['patients.destroy',$patient->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Delete', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
                                         {!! Form::close() !!}
-
                                     </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['surgeries.index',$patient->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Ver operaciones', ['class'=> 'btn btn-success'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+                                    <td>
+                                        {!! Form::open(['route' => ['patients.showdetails',$patient->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Ver enfermedades', ['class'=> 'btn btn-info'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
+
                                 </tr>
                             @endforeach
                         </table>

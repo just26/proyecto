@@ -37,10 +37,42 @@ class NurseController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'tlp' => 'required',
+            'adrress' => 'required',
+            'DNI' => 'required',
+            'age' => 'required',
             'office' => 'required|max:255',
         ]);
-        $nurse = new Nurse($request->all());
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->tlp = $request->tlp;
+        $user->adrress = $request->adrress;
+        $user->DNI = $request->DNI;
+        $user->password = Hash::make($request->DNI);
+        $user->age = $request->age;
+        // new User. $user->name = $request->name... etc etc para todos los campos
+        $user->save();
+        // $user->save()
+
+        // una vez ejecutado el save, puedes acceder al user_id asi: $user->id o $user->user_id
+
+        // 2: Recuperar el user_id que se acaba de crear
+        $user->id;
+        // 3: Crear el patient, con los datos propios de paciente, más el user_id recuperado
+        $nurse = new Nurse();
+        $nurse->office = $request->office;
+        $nurse->user_id = $user->id;
         $nurse->save();
+
+        //$nurse = new Nurse($request->all());
+        //$nurse->save();
 
         flash('Enfermero creado correctamente');
 
@@ -55,6 +87,8 @@ class NurseController extends Controller
      */
     public function show(Nurse $nurse)
     {
+        $nurse = User::find($nurse->user());
+
         return view('nurses/show', ['nurse'=>$nurse]);
     }
 

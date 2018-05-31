@@ -40,10 +40,42 @@ class DoctorController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+            'name' => 'required',
+            'surname' => 'required',
+            'email' => 'required',
+            'password' => 'required',
+            'tlp' => 'required',
+            'adrress' => 'required',
+            'DNI' => 'required',
+            'age' => 'required',
             'office' => 'required|max:255',
         ]);
-        $doctor = new Doctor($request->all());
+
+        $user = new User();
+        $user->name = $request->name;
+        $user->surname = $request->surname;
+        $user->email = $request->email;
+        $user->tlp = $request->tlp;
+        $user->adrress = $request->adrress;
+        $user->DNI = $request->DNI;
+        $user->password = Hash::make($request->DNI);
+        $user->age = $request->age;
+        // new User. $user->name = $request->name... etc etc para todos los campos
+        $user->save();
+        // $user->save()
+
+        // una vez ejecutado el save, puedes acceder al user_id asi: $user->id o $user->user_id
+
+        // 2: Recuperar el user_id que se acaba de crear
+        $user->id;
+        // 3: Crear el patient, con los datos propios de paciente, más el user_id recuperado
+        $doctor = new Doctor();
+        $doctor->office = $request->office;
+        $doctor->user_id = $user->id;
         $doctor->save();
+
+        //$doctor = new Doctor($request->all());
+        //$doctor->save();
 
         flash('Doctor creado correctamente');
 
@@ -59,6 +91,8 @@ class DoctorController extends Controller
     public function show(Doctor $doctor)
     {
         //
+        $doctor = User::find($doctor->user());
+
         return view('doctors/show', ['doctor'=>$doctor]);
     }
 

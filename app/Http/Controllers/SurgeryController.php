@@ -14,7 +14,7 @@ class SurgeryController extends Controller
      */
     public function index()
     {
-        $surgeries = Nurse::all();
+        $surgeries = Surgery::all();
         return view('surgeries/index', ['surgeries'=>$surgeries]);
     }
 
@@ -38,7 +38,6 @@ class SurgeryController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|255',
-            'hour' => 'required|255',
             'operatingroom' => 'required|255',
         ]);
         $surgery = new Surgery($request->all());
@@ -68,7 +67,7 @@ class SurgeryController extends Controller
      */
     public function edit($id)
     {
-        $surgery = Nurse::find($id);
+        $surgery = Surgery::find($id);
 
         return view('surgeries/edit',['surgery'=> $surgery]);
     }
@@ -84,7 +83,6 @@ class SurgeryController extends Controller
     {
         $this->validate($request, [
             'date' => 'required|255',
-            'hour' => 'required|255',
             'operatingroom' => 'required|255',
         ]);
         $surgery = Surgery::find($id);
