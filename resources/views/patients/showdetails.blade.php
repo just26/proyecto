@@ -5,19 +5,14 @@
         <div class="row">
             <div class="col-md-8 col-md-offset-2">
                 <div class="panel panel-default">
-                    <div class="panel-heading">Enfermedades</div>
+                    <div class="panel-heading">ENFERMEDAD/ES DEL PACIENTE</div>
 
                     <div class="panel-body">
-                        @include('flash::message')
-                        {!! Form::open(['route' => 'diseases.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Agregar enfermedad', ['class'=> 'btn btn-primary'])!!}
-                        {!! Form::close() !!}
 
-                        <br><br>
 
                         <table class="table table-sm table-dark">
                             <tr>
-                                <th>Nombre</th>
+                                <th>Nombre del paciente</th>
                             </tr>
 
                                 <tr>
@@ -28,11 +23,10 @@
 
                             <table class="table table-striped table-bordered">
                             <tr>
-                                <th>Nombre</th>
-                                <th>Fecha de la enfermedad</th>
+                                <th>Nombre de la enfermedad</th>
+                                <th>Fecha de inicio la enfermedad</th>
                                 <th>Sintomas</th>
 
-                                <th colspan="2">Acciones</th>
                             </tr>
 
                             @foreach ($patient->diseases as $disease)
@@ -40,9 +34,17 @@
                                     <td>{{ $disease->name }}</td>
                                     <td>{{ $disease->pivot->date }}</td>
                                     <td>{{ $disease->pivot->symptom }}</td>
+
+
                                 </tr>
                             @endforeach
                         </table>
+                        @include('flash::message')
+                            {!! Form::open(['route' => 'diseases.create', 'method' => 'get']) !!}
+                            {!!   Form::submit('Añadir enfermedad', ['class'=> 'btn btn-warning'])!!}
+                            {!! Form::close() !!}
+                        <br><br>
+
                     </div>
                 </div>
             </div>

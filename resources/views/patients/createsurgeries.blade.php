@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
 
-                        {!! Form::open(['route' => 'surgeries.store']) !!}
+                        {!! Form::open(['route' => 'patients.storesurgeries']) !!}
                         <div class="form-group">
                             {!! Form::label('date', 'Fecha y hora de la operacion') !!}
 

@@ -8,37 +8,33 @@
                     <div class="panel-heading">Doctores</div>
 
                     <div class="panel-body">
-                        @include('flash::message')
-                        {!! Form::open(['route' => 'doctors.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Crear Doctor', ['class'=> 'btn btn-primary'])!!}
-                        {!! Form::close() !!}
+
 
                         <br><br>
                         <table class="table table-striped table-bordered">
                             <tr>
+                                <th>Nombre</th>
                                 <th>Despacho</th>
+                                <th>Valoración</th>
 
 
-                                <th colspan="2">Actions</th>
+                                <th colspan="2">Acciones</th>
                             </tr>
 
                             @foreach ($doctors as $doctor)
 
 
                                 <tr>
+                                    <td>{{ $doctor->user->name }}</td>
                                     <td>{{ $doctor->office }}</td>
+                                    <td>{{ $doctor->assessment }}</td>
+
 
 
                                     <td>
                                         {!! Form::open(['route' => ['doctors.edit',$doctor->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Edit', ['class'=> 'btn btn-warning'])!!}
                                         {!! Form::close() !!}
-                                    </td>
-                                    <td>
-                                        {!! Form::open(['route' => ['doctors.destroy',$doctor->id], 'method' => 'delete']) !!}
-                                        {!!   Form::submit('Delete', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}
-                                        {!! Form::close() !!}
-
                                     </td>
                                 </tr>
                             @endforeach

@@ -13,8 +13,8 @@
                         {!! Form::model($doctor, [ 'route' => ['doctors.update',$doctor->id], 'method'=>'PUT']) !!}
 
                         <div class="form-group">
-                            {!! Form::label('office', 'Despacho del Doctor') !!}
-                            {!! Form::text('office',$doctor->office,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('assessment', 'Valoracion del Doctor') !!}
+                            {!! Form::text('assessment',$doctor->assessment,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
 
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}

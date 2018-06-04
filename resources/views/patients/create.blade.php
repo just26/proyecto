@@ -40,8 +40,8 @@
                             {!! Form::text('DNI',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('age', 'Edad del Paciente') !!}
-                            {!! Form::text('age',null,['class'=>'form-control', 'required', 'autofocus']) !!}
+                            {!! Form::label('birthday', 'Fecha de nacimiento del paciente (aaaa-mm-aa)') !!}
+                            {!! Form::text('birthday',null,['class'=>'form-control', 'required', 'autofocus']) !!}
                         </div>
                         <div class="form-group">
                             {!! Form::label('nuhsa', 'Nuhsa del Paciente') !!}

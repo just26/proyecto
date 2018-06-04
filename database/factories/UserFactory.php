@@ -23,6 +23,6 @@ $factory->define(App\User::class, function (Faker $faker) {
         'tlp' => rand(600000000,999999999),//$faker->phoneNumber devuelve un string
         'adrress' => str_random(10),
         'DNI' => str_random(10),
-        'age' => rand(0,100),
+        'birthday' => $faker->date,
     ];
 });

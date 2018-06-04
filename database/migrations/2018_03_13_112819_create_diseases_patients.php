@@ -19,7 +19,7 @@ class CreateDiseasesPatients extends Migration
             $table->increments('id');
             $table->unsignedInteger('patient_id');
             $table->unsignedInteger('disease_id');
-            $table->date('date');
+            $table->dateTime('date');
             $table->string('symptom');
 
             $table->foreign('patient_id')->references('id')->on('patients')->onDelete('cascade')->onUpdate('cascade');

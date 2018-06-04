@@ -81,9 +81,10 @@ class RegisterController extends Controller
             'tlp' => 'required|integer',
             'adrress' => 'required|string|max:255',
             'DNI' => 'required|string|max:255',
-            'age' => 'required|integer|max:255',
+            'birthday' => 'required|date|max:255',
             'office' => 'required|string|max:255',
             'nuhsa' => 'required|string|max:255',
+            'nurse_id' => 'required|string|max:255'
         ]);
     }
 
@@ -103,7 +104,7 @@ class RegisterController extends Controller
         $user->tlp = $data['tlp'];
         $user->adrress = $data['adrress'];
         $user->DNI = $data['DNI'];
-        $user->age = $data['age'];
+        $user->birthday = $data['birthday'];
         $user->save();
 
         $valor = $_POST['Tipo'];
@@ -126,6 +127,7 @@ class RegisterController extends Controller
         }else{
             $patient = new Patient($data);
             $patient->nuhsa = $data['nuhsa'];
+            $patient->nurse_id = $data['nurse_id'];
 
             $patient->user()->associate($user);
             $patient->save();

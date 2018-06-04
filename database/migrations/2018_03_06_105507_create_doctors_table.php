@@ -17,6 +17,7 @@ class CreateDoctorsTable extends Migration
             $table->increments('id')->unique();
             $table->unsignedInteger('user_id');
             $table->string('office');
+            $table->longText('assessment')->nullable();
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade')->onUpdate('cascade');

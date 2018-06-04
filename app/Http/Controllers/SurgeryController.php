@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Doctor;
+use App\Patient;
 use App\Surgery;
 use Illuminate\Http\Request;
 
@@ -25,7 +27,12 @@ class SurgeryController extends Controller
      */
     public function create()
     {
-        return view('surgeries/create');
+        $doctors = Doctor::all()->pluck('full_name','id');
+
+        $patients = Patient::all()->pluck('full_name','id');
+
+
+        return view('surgeries/create',['doctors'=>$doctors, 'patients'=>$patients]);
     }
 
     /**
@@ -37,15 +44,20 @@ class SurgeryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'date' => 'required|255',
-            'operatingroom' => 'required|255',
+
+            'doctor_id' => 'required|exists:doctors,id',
+            'patient_id' => 'required|exists:patients,id',
+            'date' => 'required',
+            'operatingroom' => 'required',
+
         ]);
+
         $surgery = new Surgery($request->all());
         $surgery->save();
 
-        flash('Operacion creado correctamente');
+        flash('Operacion creada correctamente');
 
-        return redirect()-> route('surgeries.index');
+        return redirect()->route('patients.index');
     }
 
     /**
@@ -107,7 +119,7 @@ class SurgeryController extends Controller
         $surgery->delete();
         flash('Operacion borrada correctamente');
 
-        return redirect()->route('surgeries.index');
+        return redirect()->route('patients.index');
     }
 
     public function destroyAll()

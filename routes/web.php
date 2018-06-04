@@ -24,7 +24,19 @@ Route::delete('users/destroyAll', 'UserController@destroyAll')->name('users.dest
 
 Route::delete('patients/destroyAll','PatientController@destroyAll')->name('patients.destroyAll');
 Route::get('patients/showdetails/{id}', 'PatientController@showdetails')->name('patients.showdetails');
+Route::get('patients/createdetails', 'PatientController@createdetails')->name('patients.createdetails');
+Route::post('patients/storedetails', 'PatientController@storedetails')->name('patients.storedetails');
+Route::get('patients/{id}/editdetails', 'PatientController@editdetails')->name('patients.editdetails');
+Route::put('patients/updatedetails/{id}', 'PatientController@updatedetails')->name('patients.updatedetails');
+
+Route::get('patients/showsurgeries/{id}', 'PatientController@showsurgeries')->name('patients.showsurgeries');
+
+Route::get('patients/createsurgeries', 'PatientController@createsurgeries')->name('patients.createsurgeries');
+Route::post('patients/storesurgeries', 'PatientController@storesurgeries')->name('patients.storesurgeries');
+
 Route::resource('patients', 'PatientController');
+
+
 
 Route::delete('doctors/destroyAll','DoctorController@destroyAll')->name('doctors.destroyAll');
 Route::resource('doctors', 'DoctorController');

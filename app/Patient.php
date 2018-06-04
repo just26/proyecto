@@ -22,9 +22,9 @@ class Patient extends Model
     {
         return $this->belongsTo('App\Nurse');
     }
-
+    protected $guarded = ['id'];
     public function diseases()
     {
-        return $this->belongsToMany('App\Disease','diseases_patients','patient_id','disease_id')->withPivot('date','symptom');
+        return $this->belongsToMany('App\Disease','diseases_patients','patient_id','disease_id')->withPivot('date','symptom','disease_id');
     }
 }

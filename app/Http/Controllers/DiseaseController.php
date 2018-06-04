@@ -29,9 +29,12 @@ class DiseaseController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
+    public function create($uid)
     {
-        return view('diseases/create');
+        /*$diseases = Disease::lists('name','id');
+        $usr = User::find($uid);
+
+        return view('diseases/create', compact('usr', 'diseases'));*/
     }
 
     /**
@@ -42,7 +45,11 @@ class DiseaseController extends Controller
      */
     public function store(Request $request)
     {
-        $this->validate($request, [
+        /*$usr = User::find($uid)->patients()->create($request->all());
+        $usr->disease()->attach([date, symptom]);
+        return redirect()-> route('patients.index');*/
+
+        /*$this->validate($request, [
             'name' => 'required|max:255',
         ]);
         $disease = new Disease($request->all());
@@ -50,7 +57,7 @@ class DiseaseController extends Controller
 
         flash('Enfermedad creada correctamente');
 
-        return redirect()-> route('diseases.index');
+        return redirect()-> route('diseases.index');*/
     }
 
     /**

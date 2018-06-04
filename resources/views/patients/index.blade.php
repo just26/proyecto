@@ -10,7 +10,7 @@
                     <div class="panel-body">
                         @include('flash::message')
                         {!! Form::open(['route' => 'patients.create', 'method' => 'get']) !!}
-                        {!!   Form::submit('Create patient', ['class'=> 'btn btn-primary'])!!}
+                        {!!   Form::submit('Crear paciente', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
                         <br><br>
@@ -18,6 +18,10 @@
                             <tr>
                                 <th>Nuhsa</th>
                                 <th>Nombre</th>
+                                <th>Apellido</th>
+                                <th>Teléfono</th>
+                                <th>Dirección</th>
+                                <th>DNI</th>
 
                                 <th colspan="4">Acciones</th>
                             </tr>
@@ -28,6 +32,11 @@
                                 <tr>
                                     <td>{{ $patient->nuhsa }}</td>
                                     <td>{{ $patient->user->name}}</td>
+                                    <td>{{ $patient->user->surname}}</td>
+                                    <td>{{ $patient->user->tlp}}</td>
+                                    <td>{{ $patient->user->adrress}}</td>
+                                    <td>{{ $patient->user->DNI}}</td>
+
 
                                     <td>
                                         {!! Form::open(['route' => ['patients.edit',$patient->id], 'method' => 'get']) !!}
@@ -40,7 +49,7 @@
                                         {!! Form::close() !!}
                                     </td>
                                     <td>
-                                        {!! Form::open(['route' => ['surgeries.index',$patient->id], 'method' => 'get']) !!}
+                                        {!! Form::open(['route' => ['patients.showsurgeries',$patient->id], 'method' => 'get']) !!}
                                         {!!   Form::submit('Ver operaciones', ['class'=> 'btn btn-success'])!!}
                                         {!! Form::close() !!}
                                     </td>

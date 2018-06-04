@@ -23,7 +23,7 @@ class CreateUsersTable extends Migration
             $table->integer('tlp');
             $table->string('adrress');
             $table->string('DNI')->unique();
-            $table->integer('age')->default(18);
+            $table->date('birthday');
             $table->rememberToken();
             $table->timestamps();
 

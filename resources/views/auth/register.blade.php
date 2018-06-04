@@ -15,11 +15,11 @@
 
                                 <label class="col-md-4 col-form-label text-md-right">Tipo de profesional</label>
 
-                                <input type="radio" name="Tipo" id="Tipo" value="Doctor">
+                                <input type="radio" name="Tipo" id="Doctor" value="Doctor">
                                 <label for="Doctor">Doctor</label>
-                                <input type="radio" name="Tipo" id="Tipo" value="Enfermero">
+                                <input type="radio" name="Tipo" id="Enfermero" value="Enfermero">
                                 <label for="Enfermero">Enfermero</label>
-                                <input type="radio" name="Tipo" id="Tipo" value="Paciente">
+                                <input type="radio" name="Tipo" id="Paciente" value="Paciente">
                                 <label for="Paciente">Paciente</label>
 
                             </div>
@@ -132,14 +132,14 @@
                         </div>
 
                         <div class="form-group row">
-                            <label for="age" class="col-md-4 col-form-label text-md-right">Edad</label>
+                            <label for="birthday" class="col-md-4 col-form-label text-md-right">Fecha de nacimiento (aaaa-mm-dd)</label>
 
                             <div class="col-md-6">
-                                <input id="age" type="text" class="form-control{{ $errors->has('age') ? ' is-invalid' : '' }}" name="age" value="{{ old('age') }}" required autofocus>
+                                <input id="birthday" type="text" class="form-control{{ $errors->has('birthday') ? ' is-invalid' : '' }}" name="birthday" value="{{ old('birthday') }}" required autofocus>
 
-                                @if ($errors->has('age'))
+                                @if ($errors->has('birthday'))
                                     <span class="invalid-feedback">
-                                        <strong>{{ $errors->first('age') }}</strong>
+                                        <strong>{{ $errors->first('birthday') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -168,6 +168,20 @@
                                 @if ($errors->has('nuhsa'))
                                     <span class="invalid-feedback">
                                         <strong>{{ $errors->first('nuhsa') }}</strong>
+                                    </span>
+                                @endif
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <label for="nuhsa" class="col-md-4 col-form-label text-md-right">Identificador del enfermero</label>
+
+                            <div class="col-md-6">
+                                <input id="nurse_id" type="text" class="form-control{{ $errors->has('nurse_id') ? ' is-invalid' : '' }}" name="nurse_id" value="{{ old('nurse_id') }}" required autofocus>
+
+                                @if ($errors->has('nurse_id'))
+                                    <span class="invalid-feedback">
+                                        <strong>{{ $errors->first('nurse_id') }}</strong>
                                     </span>
                                 @endif
                             </div>

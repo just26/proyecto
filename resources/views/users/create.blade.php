@@ -40,8 +40,8 @@
                             {!! Form::text('DNI',null,['class'=>'form-control', 'required']) !!}
                         </div>
                         <div class="form-group">
-                            {!! Form::label('age', 'Edad del usuario') !!}
-                            {!! Form::text('age',null,['class'=>'form-control', 'required']) !!}
+                            {!! Form::label('birthday', 'Fecha de nacimiento del usuario (aaaa-mm-dd)') !!}
+                            {!! Form::text('birthday',null,['class'=>'form-control', 'required']) !!}
                         </div>
                         {!! Form::submit('Guardar',['class'=>'btn-primary btn']) !!}
 
