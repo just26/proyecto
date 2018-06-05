@@ -46,7 +46,11 @@
                                     <td>{{ $surgery->doctor->user->name }}</td>
                                     <td>{{ $surgery->doctor->office }}</td>
 
-
+                                    <td>
+                                        {!! Form::open(['route' => ['surgeries.edit',$surgery->id], 'method' => 'get']) !!}
+                                        {!!   Form::submit('Edit', ['class'=> 'btn btn-warning'])!!}
+                                        {!! Form::close() !!}
+                                    </td>
                                     <td>
                                         {!! Form::open(['route' => ['surgeries.destroy',$surgery->id], 'method' => 'delete']) !!}
                                         {!!   Form::submit('Delete', ['class'=> 'btn btn-danger' ,'onclick' => 'if(!confirm("¿Está seguro?"))event.preventDefault();'])!!}

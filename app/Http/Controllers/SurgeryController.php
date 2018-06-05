@@ -94,8 +94,8 @@ class SurgeryController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'date' => 'required|255',
-            'operatingroom' => 'required|255',
+            'date' => 'required',
+            'operatingroom' => 'required',
         ]);
         $surgery = Surgery::find($id);
         $surgery->fill($request->all());
@@ -104,7 +104,7 @@ class SurgeryController extends Controller
 
         flash('Operacion modificada correctamente');
 
-        return redirect()-> route('surgeries.index');
+        return redirect()-> route('patients.index');
     }
 
     /**
