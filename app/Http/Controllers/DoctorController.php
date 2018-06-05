@@ -121,7 +121,6 @@ class DoctorController extends Controller
     {
         //
         $this->validate($request, [
-            'office' => 'required',
             'assessment' => 'required',
         ]);
         $doctor = Doctor::find($id);

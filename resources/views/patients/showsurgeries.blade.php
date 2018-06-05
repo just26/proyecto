@@ -31,6 +31,8 @@
                                 <th>Fecha</th>
                                 <th>Quirófano</th>
                                 <th>Nombre del doctor</th>
+                                <th>Despacho del doctor</th>
+
 
                                 <th colspan="2">Actions</th>
                             </tr>
@@ -42,6 +44,8 @@
                                     <td>{{ $surgery->date }}</td>
                                     <td>{{ $surgery->operatingroom}}</td>
                                     <td>{{ $surgery->doctor->user->name }}</td>
+                                    <td>{{ $surgery->doctor->office }}</td>
+
 
                                     <td>
                                         {!! Form::open(['route' => ['surgeries.destroy',$surgery->id], 'method' => 'delete']) !!}

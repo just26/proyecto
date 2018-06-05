@@ -13,7 +13,16 @@
                         {!!   Form::submit('Crear paciente', ['class'=> 'btn btn-primary'])!!}
                         {!! Form::close() !!}
 
+
+                            {!! Form::open(['route' => 'doctors.index', 'method' => 'get']) !!}
+                            {!!   Form::submit('Ver Doctores', ['class'=> 'btn btn-success'])!!}
+                            {!! Form::close() !!}
+
+
                         <br><br>
+
+
+
                         <table class="table table-striped table-bordered">
                             <tr>
                                 <th>Nuhsa</th>

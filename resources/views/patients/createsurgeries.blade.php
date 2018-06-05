@@ -25,12 +25,12 @@
                         </div>
 
                         <div class="form-group">
-                            {!!Form::label('doctor_id', 'Doctor') !!}
+                            {!!Form::label('doctor_id', 'Doctor (Despacho)') !!}
                             <br>
                             {!! Form::select('doctor_id', $doctors, ['class' => 'form-control']) !!}
                         </div>
                         <div class="form-group">
-                            {!!Form::label('patient_id', 'Patient') !!}
+                            {!!Form::label('patient_id', 'Paciente (Nuhsa)') !!}
                             <br>
                             {!! Form::select('patient_id', $patients, ['class' => 'form-control']) !!}
                         </div>

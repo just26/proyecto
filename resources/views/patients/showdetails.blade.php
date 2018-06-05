@@ -39,11 +39,11 @@
                                 </tr>
                             @endforeach
                         </table>
-                        @include('flash::message')
+                        {{--@include('flash::message')
                             {!! Form::open(['route' => 'diseases.create', 'method' => 'get']) !!}
                             {!!   Form::submit('Añadir enfermedad', ['class'=> 'btn btn-warning'])!!}
                             {!! Form::close() !!}
-                        <br><br>
+                        <br><br>--}}
 
                     </div>
                 </div>

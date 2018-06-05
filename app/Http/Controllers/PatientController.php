@@ -61,9 +61,10 @@ class PatientController extends Controller
         return view('patients/createdetails', compact('usr', 'diseases'));
     }
     public function createsurgeries(){
-        $doctors = Doctor::all()->pluck('full_name','id');
 
-        $patients = Patient::all()->pluck('full_name','id');
+        $doctors = Doctor::all()->pluck('office','id');
+
+        $patients = Patient::all()->pluck('nuhsa','id');
 
 
         return view('patients/createsurgeries',['doctors'=>$doctors, 'patients'=>$patients]);
